@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/urfave/cli/v2"
@@ -35,8 +34,9 @@ func main() {
 	cfgServiceInstance := cfgService.NewCfgService(config.NewConfigRepository(), outputService)
 
 	app := &cli.App{
-		Name:  "cursor-rules-syncer",
-		Usage: "A CLI tool to sync cursor rules",
+		Name:    "cursor-rules-syncer",
+		Usage:   "A CLI tool to sync cursor rules",
+		Version: version,
 		Commands: []*cli.Command{
 			{
 				Name:  "pull",
@@ -134,14 +134,6 @@ func main() {
 						return cfgServiceInstance.ShowConfig()
 					}
 					return cfgServiceInstance.UpdateConfig(c)
-				},
-			},
-			{
-				Name:  "version",
-				Usage: "Print the version number",
-				Action: func(c *cli.Context) error {
-					fmt.Println(version)
-					return nil
 				},
 			},
 		},
