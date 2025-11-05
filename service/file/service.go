@@ -32,7 +32,7 @@ type copierService interface {
 }
 
 type filterService interface {
-	GetFilePatterns(flagValue, envVarName string) ([]string, error)
+	GetFilePatterns(flagValue string) ([]string, error)
 	FindFilesByPatterns(dir string, patterns []string) ([]string, error)
 	CleanupExtraFilesByPatterns(srcFiles []string, srcBase, dstBase string, patterns []string) error
 }
@@ -76,9 +76,9 @@ func (f *FileService) Copy(srcPath, dstPath string, overwriteHeaders bool) error
 	return f.copier.Copy(srcPath, dstPath, overwriteHeaders)
 }
 
-// GetFilePatterns returns file patterns from various sources
-func (f *FileService) GetFilePatterns(flagValue, envVarName string) ([]string, error) {
-	return f.filter.GetFilePatterns(flagValue, envVarName)
+// GetFilePatterns returns file patterns from flag value
+func (f *FileService) GetFilePatterns(flagValue string) ([]string, error) {
+	return f.filter.GetFilePatterns(flagValue)
 }
 
 // FindFilesByPatterns finds all files matching patterns in directory

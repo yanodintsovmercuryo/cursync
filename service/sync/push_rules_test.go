@@ -30,8 +30,6 @@ func TestSyncService_PushRules(t *testing.T) {
 			RulesDir: "",
 		}
 
-		os.Unsetenv("CURSOR_RULES_DIR")
-
 		result, err := f.syncService.PushRules(options)
 		require.Error(t, err)
 		require.Contains(t, err.Error(), "failed to get rules source dir")
@@ -151,7 +149,7 @@ func TestSyncService_PushRules(t *testing.T) {
 		expectedErr := errors.New("file patterns error")
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return(nil, expectedErr).
 			Times(1)
 
@@ -190,7 +188,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -236,7 +234,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("*.mdc", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("*.mdc").
 			Return([]string{"*.mdc"}, nil).
 			Times(1)
 
@@ -283,7 +281,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -335,7 +333,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("*.mdc", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("*.mdc").
 			Return([]string{"*.mdc"}, nil).
 			Times(1)
 
@@ -397,7 +395,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -509,7 +507,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -625,7 +623,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -708,7 +706,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -766,7 +764,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -841,7 +839,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -928,7 +926,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -1020,7 +1018,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 
@@ -1136,7 +1134,7 @@ func TestSyncService_PushRules(t *testing.T) {
 			Times(1)
 
 		f.fileServiceMock.EXPECT().
-			GetFilePatterns("", "CURSOR_RULES_PATTERNS").
+			GetFilePatterns("").
 			Return([]string{}, nil).
 			Times(1)
 

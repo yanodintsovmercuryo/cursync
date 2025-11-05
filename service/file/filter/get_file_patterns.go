@@ -1,23 +1,15 @@
 package filter
 
 import (
-	"os"
-
 	"github.com/yanodintsovmercuryo/cursync/pkg/string_utils"
 )
 
-// GetFilePatterns returns file patterns from various sources
-func (f *Filter) GetFilePatterns(flagValue, envVarName string) ([]string, error) {
-	patterns := []string{}
-
-	patternsSource := flagValue
-	if patternsSource == "" {
-		patternsSource = os.Getenv(envVarName)
+// GetFilePatterns returns file patterns from flag value
+func (f *Filter) GetFilePatterns(flagValue string) ([]string, error) {
+	if flagValue == "" {
+		return []string{}, nil
 	}
 
-	if patternsSource != "" {
-		patterns = string_utils.SplitTrimFilter(patternsSource, ",")
-	}
-
+	patterns := string_utils.SplitTrimFilter(flagValue, ",")
 	return patterns, nil
 }

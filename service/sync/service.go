@@ -6,8 +6,6 @@ import (
 	"os"
 )
 
-const cursorRulesPatternsEnvVar = "CURSOR_RULES_PATTERNS"
-
 type outputService interface {
 	PrintErrorf(format string, args ...interface{})
 	PrintOperation(operationType, relativePath string)
@@ -26,7 +24,7 @@ type gitOps interface {
 }
 
 type fileService interface {
-	GetFilePatterns(flagValue, envVarName string) ([]string, error)
+	GetFilePatterns(flagValue string) ([]string, error)
 	FindFilesByPatterns(dir string, patterns []string) ([]string, error)
 	CleanupExtraFilesByPatterns(srcFiles []string, srcBase, dstBase string, patterns []string) error
 	AreEqual(file1, file2 string, overwriteHeaders bool) (bool, error)
@@ -74,19 +72,12 @@ func NewSyncServiceWithMocks(output outputService, fileOps fileOps, pathUtils pa
 	}
 }
 
-// getRulesSourceDir gets rules directory path from flag or environment variable
+// getRulesSourceDir gets rules directory path from flag
 func (s *SyncService) getRulesSourceDir(flagValue string) (string, error) {
-	const cursorRulesDirEnvVar = "CURSOR_RULES_DIR"
-
-	if flagValue != "" {
-		return flagValue, nil
+	if flagValue == "" {
+		return "", fmt.Errorf("rules directory not specified: use --rules-dir flag")
 	}
-
-	rulesDir := os.Getenv(cursorRulesDirEnvVar)
-	if rulesDir == "" {
-		return "", fmt.Errorf("rules directory not specified: use --rules-dir flag or set %s environment variable", cursorRulesDirEnvVar)
-	}
-	return rulesDir, nil
+	return flagValue, nil
 }
 
 // cleanupExtraFiles removes files that exist in destination but not in source

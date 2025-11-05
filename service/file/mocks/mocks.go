@@ -171,155 +171,6 @@ func (mr *MockfileOpsMockRecorder) WriteFile(filePath, content, perm any) *gomoc
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "WriteFile", reflect.TypeOf((*MockfileOps)(nil).WriteFile), filePath, content, perm)
 }
 
-// MockoutputService is a mock of outputService interface.
-type MockoutputService struct {
-	ctrl     *gomock.Controller
-	recorder *MockoutputServiceMockRecorder
-	isgomock struct{}
-}
-
-// MockoutputServiceMockRecorder is the mock recorder for MockoutputService.
-type MockoutputServiceMockRecorder struct {
-	mock *MockoutputService
-}
-
-// NewMockoutputService creates a new mock instance.
-func NewMockoutputService(ctrl *gomock.Controller) *MockoutputService {
-	mock := &MockoutputService{ctrl: ctrl}
-	mock.recorder = &MockoutputServiceMockRecorder{mock}
-	return mock
-}
-
-// EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockoutputService) EXPECT() *MockoutputServiceMockRecorder {
-	return m.recorder
-}
-
-// PrintErrorf mocks base method.
-func (m *MockoutputService) PrintErrorf(format string, args ...any) {
-	m.ctrl.T.Helper()
-	varargs := []any{format}
-	for _, a := range args {
-		varargs = append(varargs, a)
-	}
-	m.ctrl.Call(m, "PrintErrorf", varargs...)
-}
-
-// PrintErrorf indicates an expected call of PrintErrorf.
-func (mr *MockoutputServiceMockRecorder) PrintErrorf(format any, args ...any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	varargs := append([]any{format}, args...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrintErrorf", reflect.TypeOf((*MockoutputService)(nil).PrintErrorf), varargs...)
-}
-
-// PrintOperation mocks base method.
-func (m *MockoutputService) PrintOperation(operationType, relativePath string) {
-	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "PrintOperation", operationType, relativePath)
-}
-
-// PrintOperation indicates an expected call of PrintOperation.
-func (mr *MockoutputServiceMockRecorder) PrintOperation(operationType, relativePath any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrintOperation", reflect.TypeOf((*MockoutputService)(nil).PrintOperation), operationType, relativePath)
-}
-
-// MockpathUtils is a mock of pathUtils interface.
-type MockpathUtils struct {
-	ctrl     *gomock.Controller
-	recorder *MockpathUtilsMockRecorder
-	isgomock struct{}
-}
-
-// MockpathUtilsMockRecorder is the mock recorder for MockpathUtils.
-type MockpathUtilsMockRecorder struct {
-	mock *MockpathUtils
-}
-
-// NewMockpathUtils creates a new mock instance.
-func NewMockpathUtils(ctrl *gomock.Controller) *MockpathUtils {
-	mock := &MockpathUtils{ctrl: ctrl}
-	mock.recorder = &MockpathUtilsMockRecorder{mock}
-	return mock
-}
-
-// EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockpathUtils) EXPECT() *MockpathUtilsMockRecorder {
-	return m.recorder
-}
-
-// GetBaseName mocks base method.
-func (m *MockpathUtils) GetBaseName(filePath string) string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetBaseName", filePath)
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// GetBaseName indicates an expected call of GetBaseName.
-func (mr *MockpathUtilsMockRecorder) GetBaseName(filePath any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBaseName", reflect.TypeOf((*MockpathUtils)(nil).GetBaseName), filePath)
-}
-
-// GetDirectory mocks base method.
-func (m *MockpathUtils) GetDirectory(filePath string) string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetDirectory", filePath)
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// GetDirectory indicates an expected call of GetDirectory.
-func (mr *MockpathUtilsMockRecorder) GetDirectory(filePath any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetDirectory", reflect.TypeOf((*MockpathUtils)(nil).GetDirectory), filePath)
-}
-
-// GetRelativePath mocks base method.
-func (m *MockpathUtils) GetRelativePath(filePath, baseDir string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetRelativePath", filePath, baseDir)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetRelativePath indicates an expected call of GetRelativePath.
-func (mr *MockpathUtilsMockRecorder) GetRelativePath(filePath, baseDir any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRelativePath", reflect.TypeOf((*MockpathUtils)(nil).GetRelativePath), filePath, baseDir)
-}
-
-// NormalizePath mocks base method.
-func (m *MockpathUtils) NormalizePath(filePath string) string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "NormalizePath", filePath)
-	ret0, _ := ret[0].(string)
-	return ret0
-}
-
-// NormalizePath indicates an expected call of NormalizePath.
-func (mr *MockpathUtilsMockRecorder) NormalizePath(filePath any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NormalizePath", reflect.TypeOf((*MockpathUtils)(nil).NormalizePath), filePath)
-}
-
-// RecreateDirectoryStructure mocks base method.
-func (m *MockpathUtils) RecreateDirectoryStructure(srcPath, srcBase, dstBase string) (string, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RecreateDirectoryStructure", srcPath, srcBase, dstBase)
-	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// RecreateDirectoryStructure indicates an expected call of RecreateDirectoryStructure.
-func (mr *MockpathUtilsMockRecorder) RecreateDirectoryStructure(srcPath, srcBase, dstBase any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RecreateDirectoryStructure", reflect.TypeOf((*MockpathUtils)(nil).RecreateDirectoryStructure), srcPath, srcBase, dstBase)
-}
-
 // MockcomparatorService is a mock of comparatorService interface.
 type MockcomparatorService struct {
 	ctrl     *gomock.Controller
@@ -450,31 +301,17 @@ func (mr *MockfilterServiceMockRecorder) FindFilesByPatterns(dir, patterns any) 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindFilesByPatterns", reflect.TypeOf((*MockfilterService)(nil).FindFilesByPatterns), dir, patterns)
 }
 
-// GetEffectivePatterns mocks base method.
-func (m *MockfilterService) GetEffectivePatterns(patterns []string) []string {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetEffectivePatterns", patterns)
-	ret0, _ := ret[0].([]string)
-	return ret0
-}
-
-// GetEffectivePatterns indicates an expected call of GetEffectivePatterns.
-func (mr *MockfilterServiceMockRecorder) GetEffectivePatterns(patterns any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetEffectivePatterns", reflect.TypeOf((*MockfilterService)(nil).GetEffectivePatterns), patterns)
-}
-
 // GetFilePatterns mocks base method.
-func (m *MockfilterService) GetFilePatterns(flagValue, envVarName string) ([]string, error) {
+func (m *MockfilterService) GetFilePatterns(flagValue string) ([]string, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetFilePatterns", flagValue, envVarName)
+	ret := m.ctrl.Call(m, "GetFilePatterns", flagValue)
 	ret0, _ := ret[0].([]string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetFilePatterns indicates an expected call of GetFilePatterns.
-func (mr *MockfilterServiceMockRecorder) GetFilePatterns(flagValue, envVarName any) *gomock.Call {
+func (mr *MockfilterServiceMockRecorder) GetFilePatterns(flagValue any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFilePatterns", reflect.TypeOf((*MockfilterService)(nil).GetFilePatterns), flagValue, envVarName)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFilePatterns", reflect.TypeOf((*MockfilterService)(nil).GetFilePatterns), flagValue)
 }

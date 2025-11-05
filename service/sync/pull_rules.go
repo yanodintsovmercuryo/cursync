@@ -16,7 +16,7 @@ func (s *SyncService) PullRules(options *models.SyncOptions) (*models.SyncResult
 		return nil, err
 	}
 
-	filePatterns, err := s.fileService.GetFilePatterns(options.FilePatterns, cursorRulesPatternsEnvVar)
+	filePatterns, err := s.fileService.GetFilePatterns(options.FilePatterns)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get file patterns: %w", err)
 	}

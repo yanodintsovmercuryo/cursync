@@ -102,15 +102,14 @@ func TestFileService_GetFilePatterns(t *testing.T) {
 		defer finish()
 
 		flagValue := "*.txt"
-		envVarName := "TEST_VAR"
 		expected := []string{"*.txt"}
 
 		f.filterMock.EXPECT().
-			GetFilePatterns(flagValue, envVarName).
+			GetFilePatterns(flagValue).
 			Return(expected, nil).
 			Times(1)
 
-		result, err := f.fileService.GetFilePatterns(flagValue, envVarName)
+		result, err := f.fileService.GetFilePatterns(flagValue)
 		require.NoError(t, err)
 
 		if diff := cmp.Diff(expected, result); diff != "" {
@@ -124,15 +123,14 @@ func TestFileService_GetFilePatterns(t *testing.T) {
 		defer finish()
 
 		flagValue := "*.txt"
-		envVarName := "TEST_VAR"
 		expectedErr := errors.New("filter error")
 
 		f.filterMock.EXPECT().
-			GetFilePatterns(flagValue, envVarName).
+			GetFilePatterns(flagValue).
 			Return(nil, expectedErr).
 			Times(1)
 
-		result, err := f.fileService.GetFilePatterns(flagValue, envVarName)
+		result, err := f.fileService.GetFilePatterns(flagValue)
 		require.ErrorIs(t, err, expectedErr)
 		require.Empty(t, result)
 	})

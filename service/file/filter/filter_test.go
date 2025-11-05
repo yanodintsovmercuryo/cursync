@@ -2,7 +2,6 @@ package filter_test
 
 import (
 	"errors"
-	"os"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -10,8 +9,7 @@ import (
 )
 
 const (
-	testEnvVarName = "TEST_PATTERNS"
-	testDir        = "/test"
+	testDir = "/test"
 )
 
 func TestFilter_GetFilePatterns(t *testing.T) {
@@ -21,28 +19,8 @@ func TestFilter_GetFilePatterns(t *testing.T) {
 		defer finish()
 
 		flagValue := "*.txt,*.md"
-		envVarName := testEnvVarName
 
-		result, err := f.filter.GetFilePatterns(flagValue, envVarName)
-		require.NoError(t, err)
-
-		expected := []string{"*.txt", "*.md"}
-		if diff := cmp.Diff(expected, result); diff != "" {
-			t.Fatalf("mismatch (-want +got):\n%s", diff)
-		}
-	})
-
-	t.Run("from environment variable", func(t *testing.T) {
-		t.Parallel()
-		f, finish := setUp(t)
-		defer finish()
-
-		flagValue := ""
-		envVarName := testEnvVarName
-		os.Setenv(envVarName, "*.txt,*.md")
-		defer os.Unsetenv(envVarName)
-
-		result, err := f.filter.GetFilePatterns(flagValue, envVarName)
+		result, err := f.filter.GetFilePatterns(flagValue)
 		require.NoError(t, err)
 
 		expected := []string{"*.txt", "*.md"}
@@ -57,34 +35,11 @@ func TestFilter_GetFilePatterns(t *testing.T) {
 		defer finish()
 
 		flagValue := ""
-		envVarName := testEnvVarName
 
-		// Explicitly clear environment variable before test
-		os.Unsetenv(envVarName)
-
-		result, err := f.filter.GetFilePatterns(flagValue, envVarName)
+		result, err := f.filter.GetFilePatterns(flagValue)
 		require.NoError(t, err)
 
 		require.Empty(t, result)
-	})
-
-	t.Run("flag takes precedence over env", func(t *testing.T) {
-		t.Parallel()
-		f, finish := setUp(t)
-		defer finish()
-
-		flagValue := "*.txt"
-		envVarName := testEnvVarName
-		os.Setenv(envVarName, "*.md")
-		defer os.Unsetenv(envVarName)
-
-		result, err := f.filter.GetFilePatterns(flagValue, envVarName)
-		require.NoError(t, err)
-
-		expected := []string{"*.txt"}
-		if diff := cmp.Diff(expected, result); diff != "" {
-			t.Fatalf("mismatch (-want +got):\n%s", diff)
-		}
 	})
 
 	t.Run("with spaces and empty values", func(t *testing.T) {
@@ -93,9 +48,8 @@ func TestFilter_GetFilePatterns(t *testing.T) {
 		defer finish()
 
 		flagValue := " *.txt , *.md , "
-		envVarName := testEnvVarName
 
-		result, err := f.filter.GetFilePatterns(flagValue, envVarName)
+		result, err := f.filter.GetFilePatterns(flagValue)
 		require.NoError(t, err)
 
 		expected := []string{"*.txt", "*.md"}

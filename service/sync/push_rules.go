@@ -19,7 +19,7 @@ func (s *SyncService) PushRules(options *models.SyncOptions) (*models.SyncResult
 		return nil, validateErr
 	}
 
-	filePatterns, err := s.fileService.GetFilePatterns(options.FilePatterns, cursorRulesPatternsEnvVar)
+	filePatterns, err := s.fileService.GetFilePatterns(options.FilePatterns)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get file patterns: %w", err)
 	}

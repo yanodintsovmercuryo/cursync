@@ -1,4 +1,3 @@
-//go:generate mockgen -source=file_ops.go -destination=mocks/mocks.go -package=mocks
 package file_ops
 
 import (

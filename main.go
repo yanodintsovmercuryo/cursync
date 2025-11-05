@@ -45,7 +45,7 @@ func main() {
 					&cli.StringFlag{
 						Name:    cfgService.FlagRulesDir,
 						Aliases: []string{cfgService.FlagAliasRulesDir},
-						Usage:   "Path to rules directory (overrides CURSOR_RULES_DIR env var)",
+						Usage:   "Path to rules directory (overrides config file)",
 					},
 					&cli.BoolFlag{
 						Name:    cfgService.FlagOverwriteHeaders,
@@ -55,7 +55,7 @@ func main() {
 					&cli.StringFlag{
 						Name:    cfgService.FlagFilePatterns,
 						Aliases: []string{cfgService.FlagAliasFilePatterns},
-						Usage:   "Comma-separated file patterns to sync (e.g., 'local_*.mdc,translate/*.md') (overrides CURSOR_RULES_PATTERNS env var)",
+						Usage:   "Comma-separated file patterns to sync (e.g., 'local_*.mdc,translate/*.md') (overrides config file)",
 					},
 				},
 				Action: func(c *cli.Context) error {
@@ -75,7 +75,7 @@ func main() {
 					&cli.StringFlag{
 						Name:    cfgService.FlagRulesDir,
 						Aliases: []string{cfgService.FlagAliasRulesDir},
-						Usage:   "Path to rules directory (overrides CURSOR_RULES_DIR env var)",
+						Usage:   "Path to rules directory (overrides config file)",
 					},
 					&cli.BoolFlag{
 						Name:    cfgService.FlagGitWithoutPush,
@@ -90,7 +90,7 @@ func main() {
 					&cli.StringFlag{
 						Name:    cfgService.FlagFilePatterns,
 						Aliases: []string{cfgService.FlagAliasFilePatterns},
-						Usage:   "Comma-separated file patterns to sync (e.g., 'local_*.mdc,translate/*.md') (overrides CURSOR_RULES_PATTERNS env var)",
+						Usage:   "Comma-separated file patterns to sync (e.g., 'local_*.mdc,translate/*.md') (overrides config file)",
 					},
 				},
 				Action: func(c *cli.Context) error {
