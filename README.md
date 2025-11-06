@@ -33,68 +33,60 @@ cd ~/dev/new-project
 cursync pull
 ```
 
-## Usage Examples
+## Commands
+
+### pull
 
 ```bash
-# Pull rules from source directory to project
-cursync pull --rules-dir ~/my-rules
+cursync pull -d ~/my-rules -p "local-*.mdc" -o false
+```
 
-# Pull with file pattern filtering
-cursync pull -d ~/my-rules -p "local_*.mdc"
+Synchronizes files from source directory to project `.cursor/rules` directory. Deletes extra files in project that don't exist in source. 
 
-# Push rules from project to source directory
-cursync push --rules-dir ~/my-rules
+Flags:
 
-# Push without git push
-cursync push -d ~/my-rules -w
+- **`--rules-dir` / `-d`** - Path to rules directory (overrides config file)
+- **`--file-patterns` / `-p`** - Comma-separated file patterns to sync (e.g., `local_*.mdc,translate/*.md`) (overrides config file)
+- **`--overwrite-headers` / `-o`** - Overwrite headers instead of preserving them
 
-# Overwrite headers during sync
-cursync pull -d ~/my-rules -o
 
+### push
+
+```bash
+cursync push -d ~/my-rules -p "local_*.mdc" -o false -w true
+```
+
+Synchronizes files from project `.cursor/rules` directory to source directory. Deletes extra files in source that don't exist in project. Automatically commits changes to git repository. 
+
+Flags:
+
+- **`--rules-dir` / `-d`** - Path to rules directory (overrides config file)
+- **`--file-patterns` / `-p`** - Comma-separated file patterns to sync (e.g., `local_*.mdc,translate/*.md`) (overrides config file)
+- **`--overwrite-headers` / `-o`** - Overwrite headers instead of preserving them
+- **`--git-without-push` / `-w`** - Commit changes but don't push to remote
+
+### cfg
+
+```bash
 # View current configuration
 cursync cfg
 
-# Set default rules directory
-cursync cfg --rules-dir ~/my-rules
-
-# Set default file patterns
-cursync cfg --file-patterns "local_*.mdc,translate/*.md"
-
-# Set default overwrite-headers flag
-cursync cfg --overwrite-headers=true
-
-# Clear default rules directory
-cursync cfg --rules-dir=""
-
-# Clear default overwrite-headers flag
-cursync cfg --overwrite-headers=false
+# Set default configuration values
+cursync cfg -d ~/my-rules -p "local_*.mdc" -o false -w false
 ```
-
-## Commands
-
-### Pull Command
-
-Synchronizes files from source directory to project `.cursor/rules` directory. Deletes extra files in project that don't exist in source. Supports file pattern filtering via `--file-patterns` flag.
-
-### Push Command
-
-Synchronizes files from project `.cursor/rules` directory to source directory. Deletes extra files in source that don't exist in project. Automatically commits changes to git repository. Optional `--git-without-push` flag to commit without pushing.
-
-### Config Command
 
 Manages default configuration values stored in `~/.config/cursync.toml`:
 - View configuration: Run `cursync cfg` without flags
 - Set defaults: Use flags to set default values
 - Clear defaults: Set empty value for string flags or `false` for bool flags
 
-## Configuration
+Flags:
 
-- **`--rules-dir` / `-d`** - Path to rules directory (overrides config file)
-- **`--file-patterns` / `-p`** - Comma-separated file patterns (e.g., `local_*.mdc,translate/*.md`) (overrides config file)
-- **`--overwrite-headers` / `-o`** - Overwrite headers instead of preserving them
-- **`--git-without-push` / `-w`** - Commit changes but don't push to remote (push command only)
+- **`--rules-dir` / `-d`** - Set default rules directory (empty value clears it)
+- **`--file-patterns` / `-p`** - Set default file patterns (empty value clears it)
+- **`--overwrite-headers` / `-o`** - Set default overwrite-headers flag (use `true`, `1`, `false`, `0`, or empty to clear)
+- **`--git-without-push` / `-w`** - Set default git-without-push flag (use `true`, `1`, `false`, `0`, or empty to clear)
 
-**Priority order**: Command-line flags > Configuration file (`~/.config/cursync.toml`)
 
 ## Development
 
