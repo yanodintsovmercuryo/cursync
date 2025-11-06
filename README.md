@@ -2,16 +2,36 @@
 
 A CLI tool for synchronizing Cursor IDE rules between a source directory and git project's `.cursor/rules` directory. Supports bidirectional sync, file pattern filtering, YAML header preservation, and configuration management.
 
-## How to install
+## How to start
 
+### Prerequisites
+
+- Go>=1.22.4
+- Git
+
+### Install
 ```bash
 go install github.com/yanodintsovmercuryo/cursync@latest
 ```
 
-## Prerequisites
+### Example cxonfiguration
+```bash 
+# Create rules dir
+mkdir ~/my-rules
+cd ~/my-rules
+git init
 
-- Go >=1.22.4
-- Git
+# Set default configs
+cursync cfg -d ~/my-rules -p "local_*.mdc" -o false -w false
+
+# Upload rules from exist project
+cd ~/dev/exist-project
+cursync push
+
+# Download rules to new project
+cd ~/dev/new-project
+cursync pull
+```
 
 ## Usage Examples
 
